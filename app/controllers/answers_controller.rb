@@ -42,7 +42,7 @@ class AnswersController < ApplicationController
 	def upvote
 		@answer = Answer.find(params[:id])
 		@answer.upvote_by current_user
-		if reputation(@answer) > 1
+		if reputation(@answer) > 2
 			User.first.roles.delete(User.first.roles.last)
 			@answer.user.roles << Role.find_by_role("Moderatör")
 		elsif reputation(@answer) > 0
@@ -55,7 +55,7 @@ class AnswersController < ApplicationController
 	def downvote
 		@answer = Answer.find(params[:id])
 		@answer.downvote_by current_user
-		if reputation(@answer) > 1
+		if reputation(@answer) > 2
 			User.first.roles.delete(User.first.roles.last) 
 			@answer.user.roles << Role.find_by_role("Moderatör")
 		elsif reputation(@answer) > 0
