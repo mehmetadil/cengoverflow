@@ -9,6 +9,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-(1..100).each do |f|
-	User.create(email: "#{f}@gmail.com", password: "12345678")
-end
+Role.create(role:"Admin")
+Role.create(role:"Moderatör")
+Role.create(role:"Tecrübeli")
+Role.create(role:"Çaylak")
+User.create(email: "mehmetadil_323@hotmail.com", password: "5u3yqqltul")
+User.first.roles << Role.first
