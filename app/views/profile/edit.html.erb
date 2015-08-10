@@ -1,0 +1,9 @@
+<%= simple_form_for(@profile, html: { class: 'user_inline' })  do |f| %>
+  <%= f.input :first_name, label: "İsim", placeholder: 'İsminizi giriniz.' %>
+  <%= f.input :last_name, label: "Soyisim", placeholder: "Soyisminizi giriniz." %>
+  <%= f.input :phone, label: "Telefon", placeholder: "Telefon numaranızı giriniz." %>
+  <%= f.input :avatar, as: :file %>
+  <%= f.submit "Güncelle" , class: "btn btn-success"%>
+<% end %>
+
+<%= link_to "Geri", profile_path(@profile), class: "btn btn-warning" %>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-3">
+ 	<%= image_tag @profile.avatar.url(:medium), height: '248', width: '200' %>
+  </div>
+  <div class="col-md-9">
+    <ul class="list-group">
+      <li class="list-group-item"><%= t('name') %>: <%= @profile.first_name %></li>
+      <li class="list-group-item">Soyadı: <%= @profile.last_name %></li>
+      <li class="list-group-item">Telefon: <%= @profile.phone %></li>
+      <li class="list-group-item">E-mail: <%= @profile.user.email %></li>
+      <li class="list-group-item">Rütbe: <%= @profile.user.roles.last.role if @profile.user.roles.size >0 %></li>
+      <li class="list-group-item">Reputation: <%= reputation(@profile) %></li>
+    </ul>
+  </div>  
+</div>
+
+<%= link_to "Profilimi Düzenle", edit_profile_path ,class: "btn btn-default" if current_user == @profile.user %>
+<% if current_user.roles.first == Role.first %>
+<%= link_to "Kullanıcıyı Sil" , user_path(@profile.user) , method: :delete , data: {confirm: "Emin misiniz"} , class: "btn btn-default" %>
+<% end  %>
+
+<%= link_to "Geri", root_path, class: "btn btn-warning" %> <br>
+<h4>Questions</h4>
+<%= render 'questions' %>
+<h4>Answers</h4>
+<%= render 'answers' %>

@@ -1,0 +1,64 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /* ----- Sıfırlamalar -----*/
+a {
+  text-decoration: none !important;
+  color: inherit ;
+}
+li {
+	list-style: none;
+}
+ul {
+  padding-left: 0;
+}
+
+ /* --------------------*/
+
+.duzenle {
+  opacity: 0.3;
+  margin-left: 5px;
+ }
+.sil {
+  opacity: 0.3;
+  margin-left: 5px;
+}
+.duzenle:hover, .duzenle:hover a {
+  opacity: 1;
+  color: #5bc0de !important; 
+ }
+.sil:hover, .sil:hover a {
+  opacity: 1;
+  color: #d9534f !important;
+}
+.current-list {
+  border-left-color:#F71D46;
+}
+.current-badge {
+  background-color:#F71D46;
+}
+.soru-baslik {
+  text-transform: uppercase;
+}
+.alt-bilgi {
+  margin-bottom: 0 !important;
+}
+.help-block a {
+  margin-right: 10px;
+}
+.btn-geri {
+  margin-left: 15px;
+ }

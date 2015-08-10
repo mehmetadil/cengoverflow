@@ -1,0 +1,21 @@
+<ul class="list-group">
+<% if @answers %>
+  <% @answers.sort_by {|a| a.votes_for.up.count}.reverse.each do |answer| %>
+<ul class="list-group">
+  <li class="list-group-item"><%= link_to answer.content , question_path(answer.question) %> &nbsp;
+  <i class="fa fa-user"></i>&nbsp;<%= link_to answer.user.profile.full_name , profile_path(answer.user.profile) %>&nbsp;
+  <% if user_signed_in? && current_user.id == answer.user.id %>
+
+    <span class="duzenle"><i class="fa fa-pencil"></i><%= link_to "Duzenle" , edit_answer_path(answer),class: "duzenle"%></span>
+  <span class="sil"><i class="fa fa-trash-o"></i><%= link_to "Sil", answer, method: :delete, data: {confirm: "Emin misin?"}, class: "sil" %></span>
+  <% end %>
+  <span class="help-block"><i class="fa fa-clock-o"></i> <%= link_to time_ago_in_words(answer.created_at), answer, style: "color:inherit; text-decoration:none;" %>&nbsp;
+   <%= link_to "" , like_answer_path(answer) , method: :put , class: "fa fa-thumbs-o-up"%>&nbsp;<%= answer.votes_for.up.count %>&nbsp;
+   <%= link_to "" , dislike_answer_path(answer) , method: :put , class: "fa fa-thumbs-o-down"%>&nbsp;<%= answer.votes_for.down.count %>
+
+  </span>
+  </li>
+</ul>
+<% end %>
+<% end %>
+<%= link_to "Geri", root_path, class: "btn btn-warning" %> <br>
