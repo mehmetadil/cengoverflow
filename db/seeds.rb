@@ -7,5 +7,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+User.firs.roles <<  Role.first
+User.firs.roles <<  Role.last
+Question.first.delete
 

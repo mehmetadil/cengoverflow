@@ -43,29 +43,32 @@ class AnswersController < ApplicationController
 		@answer = Answer.find(params[:id])
 		@answer.upvote_by current_user
 		if reputation(@answer) > 2
-			User.first.roles.delete(User.first.roles.last)
+			@answer.user.roles.delete(User.first.roles.last)
 			@answer.user.roles << Role.find_by_role("Moderatör")
 		elsif reputation(@answer) > 0
-			User.first.roles.delete(User.first.roles.last)
+			@answer.user.roles.delete(User.first.roles.last)
 			@answer.user.roles << Role.find_by_role("Tecrubeli Kullanıcı")
+		else
+			@answer.user.roles.delete(User.first.roles.last)  
+			@answer.user.roles << Role.find_by_role("Çaylak")
 		end 	 
-		redirect_to :back 
+		redirect_to question_path(@answer.question)
 	end
 
 	def downvote
 		@answer = Answer.find(params[:id])
 		@answer.downvote_by current_user
 		if reputation(@answer) > 2
-			User.first.roles.delete(User.first.roles.last) 
+			@answer.user.roles.delete(User.first.roles.last) 
 			@answer.user.roles << Role.find_by_role("Moderatör")
 		elsif reputation(@answer) > 0
-			User.first.roles.delete(User.first.roles.last)  
+			@answer.user.roles.delete(User.first.roles.last)  
 			@answer.user.roles << Role.find_by_role("Tecrubeli Kullanıcı")
 		else
-			User.first.roles.delete(User.first.roles.last)  
+			@answer.user.roles.delete(User.first.roles.last)  
 			@answer.user.roles << Role.find_by_role("Çaylak")
 		end 	 
-		redirect_to :back 
+		redirect_to question_path(@answer.question)	 
 	end
 
 	private
