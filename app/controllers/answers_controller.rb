@@ -42,14 +42,14 @@ class AnswersController < ApplicationController
 	def upvote
 		@answer = Answer.find(params[:id])
 		@answer.upvote_by current_user
-		if reputation(@answer) > 2
-			@answer.user.roles.delete(User.first.roles.last)
+		if reputation(@answer) > 10
+			@answer.user.roles.delete(@answer.user.roles.last)
 			@answer.user.roles << Role.find_by_role("Moderatör")
-		elsif reputation(@answer) > 0
-			@answer.user.roles.delete(User.first.roles.last)
+		elsif reputation(@answer) > 5
+			@answer.user.roles.delete(@answer.user.roles.last)
 			@answer.user.roles << Role.find_by_role("Tecrubeli Kullanıcı")
 		else
-			@answer.user.roles.delete(User.first.roles.last)  
+			@answer.user.roles.delete(@answer.user.roles.last)  
 			@answer.user.roles << Role.find_by_role("Çaylak")
 		end 	 
 		redirect_to question_path(@answer.question)
@@ -59,13 +59,13 @@ class AnswersController < ApplicationController
 		@answer = Answer.find(params[:id])
 		@answer.downvote_by current_user
 		if reputation(@answer) > 2
-			@answer.user.roles.delete(User.first.roles.last) 
+			@answer.user.roles.delete(@answer.user.roles.last) 
 			@answer.user.roles << Role.find_by_role("Moderatör")
 		elsif reputation(@answer) > 0
-			@answer.user.roles.delete(User.first.roles.last)  
+			@answer.user.roles.delete(@answer.user.roles.last)  
 			@answer.user.roles << Role.find_by_role("Tecrubeli Kullanıcı")
 		else
-			@answer.user.roles.delete(User.first.roles.last)  
+			@answer.user.roles.delete(@answer.user.roles.last)  
 			@answer.user.roles << Role.find_by_role("Çaylak")
 		end 	 
 		redirect_to question_path(@answer.question)	 
