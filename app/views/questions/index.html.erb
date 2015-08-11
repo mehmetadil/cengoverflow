@@ -1,6 +1,6 @@
 <ul class="list-group">
   <% if @questions %>
-  <% @questions.reverse_each do |question| %>
+  <% @questions.each do |question| %>
     <li class="list-group-item">
       <% question.tags.each do |tag| %>
      <span class="badge"><%= link_to tag.title , tag%></span>
