@@ -13,12 +13,10 @@
     </ul>
   </div>  
 </div>
-
 <%= link_to "Profilimi Düzenle", edit_profile_path ,class: "btn btn-default" if current_user == @profile.user %>
 <% if current_user.roles.first == Role.first %>
 <%= link_to "Kullanıcıyı Sil" , user_path(@profile.user) , method: :delete , data: {confirm: "Emin misiniz"} , class: "btn btn-default" %>
 <% end  %>
-
 <%= link_to "Geri", root_path, class: "btn btn-warning" %> <br>
 <h4>Questions</h4>
 <%= render 'questions' %>

@@ -1,10 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-  <h1>All Tags</h1>
+  	<h1>All Tags</h1>
   </div>
 </div>
-
 <% @tags.each do |tag| %>
 	<span class="badge"><%= link_to tag.title , tag_path(tag) %></span>
-	<% end %>
-<br><br>	<%= link_to "Geri", root_path, class: "btn btn-warning" %> <br>
+<% end %><br><br>
+<%= link_to "Geri", root_path, class: "btn btn-warning" %> <br>

@@ -2,6 +2,6 @@
   <%= f.input :content, label: "İçerik",  placeholder: "İçeriği yazınız.." %>
   <%= f.button :submit, "Kaydet" %>
 <% end %>
-
+<%= link_to "Geri" , question_path(@answer.question) , class: "btn btn-warning"  %>
 
 

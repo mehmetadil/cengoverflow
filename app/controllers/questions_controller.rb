@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   impressionist :actions=>[:show]
   impressionist :unique => [:impressionable_id, :session_hash]
   def index
-    @questions = Question.order(id: :desc). paginate(:page => params[:page], :per_page => 3)
+    @questions = Question.order(id: :desc). paginate(:page => params[:page], :per_page => 10)
   end
 
   def show

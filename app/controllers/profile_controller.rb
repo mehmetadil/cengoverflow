@@ -3,7 +3,6 @@ class ProfileController < ApplicationController
   before_action :set_profile
 
   def show
-
   end
 
   def edit

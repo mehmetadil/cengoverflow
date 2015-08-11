@@ -1,28 +1,24 @@
 <ul>
-<% @question.answers.sort_by {|a| a.votes_for.up.count}.reverse.each do |answer| %>
-	<div class="row">
-  		<div class="col-md-7">
-  			<li><%= answer.content %> &nbsp;
-	 
-	<% if (user_signed_in? && current_user.id == answer.user.id) || (user_signed_in? &&current_user.roles.first == Role.first) %>
-
-		<span class="duzenle"><i class="fa fa-pencil"></i><%= link_to "Duzenle" , edit_answer_path(answer),class: "duzenle"%></span>
-	<span class="sil"><i class="fa fa-trash-o"></i><%= link_to "Sil", answer, method: :delete, data: {confirm: "Emin misin?"}, class: "sil" %></span>
-	<% end %>
-  		</div>
-  		
-  		<div class="col-md-5">
-  			<span class="help-block"><i class="fa fa-clock-o"></i> <b><%= link_to time_ago_in_words(answer.created_at), answer, style: "color:inherit; text-decoration:none;" %> <br> 
-				<%= image_tag answer.user.profile.avatar.url(:medium), height: '30', width: '30' %>&nbsp;
-				<%= link_to answer.user.profile.full_name , profile_path(answer.user.profile) %> <br> 
-				Rütbe:<%= answer.user.roles.first.role %> <br>
-				Reputation Point:<%= reputation(answer) %></b> <br>
-	  			<%= link_to "", like_answer_path(answer) , class: "fa fa-thumbs-o-up" , method: :put %> <b>  <%= answer.get_likes.size %> </b><b>
-	  			<%= link_to "", dislike_answer_path(answer) , class: "fa fa-thumbs-o-down",method: :put %><%= answer.get_dislikes.size %></b>
-			</span>
+	<% @question.answers.sort_by {|a| a.votes_for.up.count}.reverse.each do |answer| %>
+		<div class="row">
+  			<div class="col-md-7">
+  				<li><%= answer.content %> &nbsp;
+					<% if (user_signed_in? && current_user.id == answer.user.id) || (user_signed_in? &&current_user.roles.first == Role.first) %>
+					  <span class="duzenle"><i class="fa fa-pencil"></i><%= link_to "Duzenle" , edit_answer_path(answer),class: "duzenle"%></span>
+					  <span class="sil"><i class="fa fa-trash-o"></i><%= link_to "Sil", answer, method: :delete, data: {confirm: "Emin misin?"}, class: "sil" %></span>
+					<% end %>
+				</li>
+  			</div>
+  			<div class="col-md-5">
+  				<span class="help-block"><i class="fa fa-clock-o"></i> <b><%= link_to time_ago_in_words(answer.created_at)%> <br> 
+					<%= image_tag answer.user.profile.avatar.url(:medium), height: '30', width: '30' %>&nbsp;
+					<%= link_to answer.user.profile.full_name , profile_path(answer.user.profile) %> <br> 
+					Rütbe:<%= answer.user.roles.first.role %> <br>
+					Reputation Point:<%= reputation(answer) %></b> <br>
+	  				<%= link_to "", like_answer_path(answer) , class: "fa fa-thumbs-o-up" , method: :put %> <b>  <%= answer.get_likes.size %> </b><b>
+	  				<%= link_to "", dislike_answer_path(answer) , class: "fa fa-thumbs-o-down",method: :put %><%= answer.get_dislikes.size %></b>
+				</span>
+			</div>
 		</div>
-	</div>
-	</li>
-
-<% end %>
+	<% end %>
 </ul>

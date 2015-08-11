@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   		@user.destroy
   		redirect_to root_path
   	else
-  		redirect_to root_path
+  		redirect_to root_path ,  alert: "Yetkisiz Erişim."
   	end
   end
 

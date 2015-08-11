@@ -1,22 +1,19 @@
 <ul class="list-group">
-  <% if @questions %>
-  <% @questions.each do |question| %>
-    <li class="list-group-item">
-      <% question.tags.each do |tag| %>
-     <span class="badge"><%= link_to tag.title , tag%></span>
-      <% end %>
+  <% if @questions.count > 0  %>
+    <% @questions.each do |question| %>
+      <li class="list-group-item">
+        <% question.tags.each do |tag| %>
+          <span class="badge"><%= link_to tag.title , tag%></span>
+        <% end %>
         <%= link_to question.title, question %>
         <% if (user_signed_in? && current_user == question.user) || (user_signed_in? &&current_user.roles.first == Role.first) %>
           <span class="duzenle"><i class="fa fa-pencil"></i> <%= link_to "Düzenle", edit_question_path(question), class: "duzenle" %> </span>
           <span class="sil"><i class="fa fa-trash-o"></i> <%= link_to "Sil", question, method: :delete, data: {confirm: "Emin misin?"}, class: "sil" %></span>
-        <% end %> 
-        
-        <br><small class="help-block"><i class="fa fa-clock-o"></i> <%= link_to time_ago_in_words(question.created_at), question, style: "color:inherit; text-decoration:none;" %>&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i> <%= link_to question.user.profile.full_name , profile_path(question.user)%>&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting-o"></i>&nbsp;<%= question.answers.count%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%= question.impressionist_count(:filter => :user_id) %></small>
-    </li>
+        <% end %><br>
+        <small class="help-block"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(question.created_at)%>&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i> <%= link_to question.user.profile.full_name , profile_path(question.user)%>&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting-o"></i>&nbsp;<%= question.answers.count%>&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;<%= question.impressionist_count(:filter => :user_id) %></small>
+      </li>
+    <% end %>
   <% end %>
-<% end %>
   <%= will_paginate @questions %>
 </ul>
-
-
 <%= link_to "Yeni Soru Sor", new_question_path, class: "btn btn-primary" if current_user%>

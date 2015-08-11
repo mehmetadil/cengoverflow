@@ -11,7 +11,7 @@
        <% @question.tags.each do |tag| %>
      <span class="badge"><%= link_to tag.title , tag%></span>
      <% end %>
-        <span class="help-block"><i class="fa fa-clock-o"></i> <b><%= link_to time_ago_in_words(@question.created_at), @question, style: "color:inherit; text-decoration:none;" %> <br> </b> </span>
+        <span class="help-block"><i class="fa fa-clock-o"></i> <b><%=time_ago_in_words(@question.created_at)%> <br> </b> </span>
         <%= image_tag @question.user.profile.avatar.url(:medium), height: '30', width: '30' %>&nbsp;
         <%= link_to @question.user.profile.full_name , profile_path(@question.user.profile) %> <br> 
         Rütbe:<%= @question.user.roles.first.role %> <br>

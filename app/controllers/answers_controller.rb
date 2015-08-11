@@ -52,23 +52,23 @@ class AnswersController < ApplicationController
 			@answer.user.roles.delete(@answer.user.roles.last)  
 			@answer.user.roles << Role.find_by_role("Çaylak")
 		end 	 
-		redirect_to question_path(@answer.question)
+		redirect_to :back
 	end
 
 	def downvote
 		@answer = Answer.find(params[:id])
 		@answer.downvote_by current_user
-		if reputation(@answer) > 2
+		if reputation(@answer) > 10
 			@answer.user.roles.delete(@answer.user.roles.last) 
 			@answer.user.roles << Role.find_by_role("Moderatör")
-		elsif reputation(@answer) > 0
+		elsif reputation(@answer) > 5
 			@answer.user.roles.delete(@answer.user.roles.last)  
 			@answer.user.roles << Role.find_by_role("Tecrubeli Kullanıcı")
 		else
 			@answer.user.roles.delete(@answer.user.roles.last)  
 			@answer.user.roles << Role.find_by_role("Çaylak")
 		end 	 
-		redirect_to question_path(@answer.question)	 
+		redirect_to :back
 	end
 
 	private
